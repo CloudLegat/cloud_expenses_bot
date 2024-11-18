@@ -1,0 +1,10 @@
+{
+    "spreadsheet_id": "SPREADSHEET_ID",
+    "bot_token": "BOT_TOKEN",
+    "cell_ranges": {
+        "daily_expenses": "I",
+        "category_range": "D22:D38",
+        "category_column": "E",
+        "budget_column": "J"
+    }
+}
