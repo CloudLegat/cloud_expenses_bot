@@ -1,83 +1,86 @@
-Cloud Expenses Bot
+# Cloud Expenses Bot
 
-Cloud Expenses Bot is a simple Telegram bot designed to help you track your daily expenses using Google Sheets. Initially created for personal use, I've decided to share it to assist others in managing their budgets effortlessly.
+Cloud Expenses Bot is a personal budget management bot that integrates with Google Sheets and Telegram. This bot helps you track your daily expenses, manage your budget, and provides support for multiple languages (English and Russian).
 
-🚀 Features
+## Features
 
-    Add Expenses: Log your expenses with easy commands.
-    View Daily Budget: Check your remaining budget for the day.
-    Multi-language Support: Use the bot in English or Russian.
-    Google Sheets Integration: All data is securely stored in your Google Sheets.
+- Track daily expenses
+- Categorize expenses
+- View daily budget
+- Support for multiple languages (English and Russian)
+- Integration with Google Sheets and Telegram
 
-🔧 Setup
+## Installation
 
-    Clone the Repository:
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/cloud-expenses-bot.git
+    cd cloud-expenses-bot
+    ```
 
-git clone https://github.com/yourusername/cloud-expenses-bot.git
-cd cloud-expenses-bot
+2. Install dependencies:
+    ```sh
+    go mod tidy
+    ```
 
-Configure:
+3. Create a `config.json` file with the following structure:
+    ```json
+    {
+        "spreadsheet_id": "your_google_sheet_id",
+        "bot_token": "your_telegram_bot_token",
+        "cell_ranges": {
+            "daily_expenses": "I2:I32",
+            "category_range": "A2:A32",
+            "category_column": "B",
+            "budget_column": "C"
+        }
+    }
+    ```
 
-    Fill in your details in config.json:
-        spreadsheet_id: Your Google Sheets ID.
-        bot_token: Your Telegram bot token.
-        cell_ranges: Define your Google Sheets cell ranges.
-    
-    Ensure lang.json contains your desired languages.
+4. Create a `credentials.json` file with your Google API credentials. [How to create credentials](https://developers.google.com/sheets/api/quickstart/go).
 
-Install Dependencies:
+5. Create a `lang.json` file with the following structure:
+    ```json
+    {
+        "en": {
+            "start": "Welcome to Cloud Expenses Bot!",
+            "add_usage": "Usage: /add <amount> <card|cash> <category>",
+            "invalid_amount": "Invalid amount format.",
+            "invalid_suffix": "Invalid payment method. Use 'card' or 'cash'.",
+            "expense_added": "Added %.2f to %s via %s.",
+            "daily_budget": "Your daily budget is: %.2f",
+            "error_occurred": "An error occurred: %v",
+            "unknown_command": "Unknown command.",
+            "help_message": "This bot helps you manage your expenses.",
+            "suffix_card": "card",
+            "suffix_cash": "cash",
+            "payment_card": "card",
+            "payment_cash": "cash",
+            "category_not_found": "Category %s not found.",
+            "language_set": "Language set to %s.",
+            "select_language": "Please select a language: en or ru."
+        }
+    }
+    ```
 
-go get -u github.com/go-telegram-bot-api/telegram-bot-api/v5
-go get -u google.golang.org/api/sheets/v4
-go get -u golang.org/x/oauth2/google
+## Usage
 
-Run the Bot:
-
+1. Run the bot:
+    ```sh
     go run main.go
+    ```
 
-Follow the console instructions to authorize with Google.
+2. Interact with the bot on Telegram using the following commands:
+    - `/start` - Start the bot and get a welcome message.
+    - `/add <amount> <card|cash> <category>` - Add an expense.
+    - `/budget` - Get your daily budget.
+    - `/lang <en|ru>` - Set your preferred language.
+    - `/help` - Get help information.
 
-🛠 Usage
+## Contributing
 
-    Start the Bot:
+Feel free to open issues or submit pull requests if you find any bugs or have feature requests.
 
-/start
+## License
 
-Add an Expense:
-
-/add AMOUNT [n/k] CATEGORY
-
-    AMOUNT: Number (e.g., 150)
-    [n/k]: n for cash, k for card
-    CATEGORY: Expense category (e.g., food)
-
-Example:
-
-/add 400 n home
-
-View Daily Budget:
-
-/budget
-
-Change Language:
-
-/lang en
-
-or
-
-    /lang ru
-
-📁 Files
-
-    main.go: Main application code.
-    lang.json: Language strings.
-    config.json: Configuration settings.
-
-🔒 Security
-
-    Keep credentials.json and token.json secure.
-    Add them to .gitignore to prevent accidental commits.
-
-📄 License
-
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
